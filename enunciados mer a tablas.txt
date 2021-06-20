@@ -1,0 +1,72 @@
+Caso 1 – Administración de DVDs
+Tienes un amigo(a) que tiene juegos en DVD. Te pide que le hagas un pequeño programa en el que pueda registrar sus DVDs tanto actuales como los que vaya comprando. Y por otro lado, tu amigo(a) los presta a todos sus amigos(as), y desea poder registrar a quién se los presta; así como hacer consultas de quién le debe cual DVD por diversos criterios de búsqueda (por persona, por tipo de juego, fecha de préstamo, cantidad de discos prestados a una persona), así como, la combinación de algunos de estos criterios.
+
+
+
+Caso 2 – Estacionamiento Medido
+Se ha implementado en Resistencia la informatización del control de estacionamiento en el micro centro de la ciudad (EMI)
+
+Básicamente funciona de la siguiente manera: 
+
+Se cuenta con un “Sistema de Créditos” por patente.
+
+Se cobra un importe fijo cada 15 minutos.
+
+El importe corresponde al tiempo de estacionamiento en determinado lugar.
+
+ El usuario puede obtener créditos mediante:
+
+o Carga virtual.
+
+o Pagando el importe al responsable municipal ubicado en el lugar. 
+
+Tener en cuenta que el crédito corresponde a una patente determinada.
+o El sistema registra el horario de llegada del vehículo a determinada calle y altura. Así como también el horario de salida.
+
+o Si el inspector de la ciudad verifica que determinada patente estacionada no se encuentra registrada en el sistema EMI, genera la multa correspondiente. Siempre y cuando la patente se encuentre inscripto en el Registro del Automotor local.
+
+ La ciudad se encuentra dividida en “zonas EMI” y a cada zona le corresponde un responsable municipal.
+
+
+
+Caso 3 – Polirubro
+El polirubro mayorista “Más por menos” te contrató para diseñar una base de datos que permita hacer la gestión de un sistema de ventas. La empresa necesita llevar un control de proveedores, clientes, productos, ventas y vendedores. Un proveedor tiene un CUIT, nombre, dirección, teléfono y página Web. Un cliente también tiene una identificación, nombre, dirección y puede tener varios teléfonos de contacto. La dirección se entiende por calle, número, municipio y provincia. Un producto tiene un código del producto, nombre, precio actual, cantidad en stock y el proveedor asociado. Un proveedor provee muchos productos, pero el polirubro compra cada producto a un solo proveedor. Además, los productos se organizan en categorías, y cada producto pertenece sólo en una categoría. Una categoría tiene una identificación, un nombre y una descripción. Un vendedor tiene una identificación, un nombre, una dirección y un teléfono. Por razones de contabilidad, se debe registrar la información de cada venta con un número de venta, fecha, cliente, el monto de la venta, el vendedor que registró la venta y la forma de pago. Cada venta debe tener un detalle de venta, en el cual se especifica para cada producto vendido el nombre, la cantidad y el precio unitario.
+
+
+
+Caso 4 – Casa de Comidas
+Una casa de comidas realiza elaboración casera de alimentos, los cuales vende en el mostrador de su único local o a través de alguna de sus líneas telefónicas.
+
+Cuando un pedido ingresa a la cocina del negocio, se sabe si proviene de mostrador o de venta telefónica. Del pedido se conocen las comidas solicitadas. Las comidas involucradas en un pedido, han sido elegidas de un menú existente, donde además del nombre de la comida, figuran los ingredientes principales del plato. Cuando se hace el pedido, el cliente puede pedir variantes de la comida original eliminando algún ingrediente de la comida o pidiendo que se modifique la cantidad(indicando por ejemplo: cargado, poco, etc.) de algún ingrediente (tener en cuenta que esto puede hacer variar el precio estándar de la comida). Tener en cuenta que el mismo ingrediente aparece sólo una vez por comida.
+
+En caso de los pedidos telefónicos se desea registrar a que número del local llamó el cliente y el número de teléfono desde el cual llamó el cliente. Un cliente puede tener más de un teléfono registrado a su nombre, sin embargo es necesario registrar con cuál de los teléfonos registrados realizó el pedido telefónico. Para cada pedido se conoce el único vendedor que lo arma.
+
+Tener en cuenta que el precio de una comida esta dado por: la suma de los precios de sus ingredientes por la cantidad colocada de ese ingrediente en esa comida, sin embargo, el precio de una comida perteneciente a un pedido, puede diferir del precio de una comida del menú (por ejemplo promoción del día, incremento en la cantidad de un producto, etc.).
+
+
+
+Caso 5 – Hospital
+En un centro hospitalario se desea crear una base de datos para la gestión de la información de todas las personas relacionadas con el hospital y en general de su funcionamiento. El hospital está dividido en diferentes áreas como pediatría, psiquiatría, medicina interna etc., cada una de las cuales tiene un código de área y un nombre. Cada área del hospital tiene asignadas un conjunto de camas disponibles. De cada cama interesa el número de la cama. Con respecto a las personas interesa conocer la identificación, el nombre, la dirección y el teléfono. Las personas relacionadas con el hospital pueden ser empleados o pacientes. Si es empleado, se debe almacenar el cargo que desempeña y el salario. Cada empleado tiene un jefe, que es otro empleado. Un empleado puede ser un médico o una enfermera. Si es un médico se debe almacenar su especialidad, si es una enfermera se almacena los años de experiencia que tiene. Cada enfermera está asignada a un área del hospital y las áreas tienen asignadas muchas enfermeras.
+
+De un paciente se desea conocer el número de la Obra Social a la que está y la fecha de nacimiento. Cada paciente tiene asociada una historia clínica que se identifica por un número de historia y una fecha de creación. Una historia clínica está asociada con muchos diagnósticos. Cada diagnostico tiene un código y una descripción. El diagnóstico es hecho por un médico y un médico formula muchos diagnósticos.
+
+Un paciente podrá ser asignado a una cama, pudiendo estar a lo largo del tiempo de ingreso en diferentes camas. Es significativo tener en cuenta la fecha de asignación de cama y el número de ésta.
+
+Necesitamos diseñar el diagrama de E/R y luego pasar a tablas (MER) con las siguientes consideraciones:
+
+ Poner nombre (significativo) a todas las entidades, las relaciones y los atributos
+
+ Poner atributos donde corresponda (tanto en entidades como en relaciones).
+
+ No pueden repetirse los nombres tanto para entidades como para relaciones
+
+ Identificar las claves primarias en todas las entidades como PK y las claves foráneas como FK
+
+ No pueden usar atributos compuestos o multivaluados en entidades y relaciones.
+
+ Determinar y asignar cardinalidades mínimas y máximas en el modelo
+
+ Todas las entidades y relaciones deben ser pasadas a tablas, independientementede su cardinalidad.
+
+ Agregar el tipo de datos para las tablas y, agregar ejemplos de datos en las tablas.
+

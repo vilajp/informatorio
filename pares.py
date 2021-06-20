@@ -1,0 +1,1 @@
+print([par for par in range(1001) if par%2==0], end= " ")
