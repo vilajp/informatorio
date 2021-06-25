@@ -1,26 +1,30 @@
 1 - Modelar las entidades Persona y Puesto. 
 
 De cada persona queremos manejar: legajo, nombre y fecha de ingreso. 
-De cada puesto: código identificador, nombre descriptivo (ej: ayudante de panadero), grado de peligrosidad (entre 0 y 10) y 
-sueldo de referencia. 
+De cada puesto: código identificador, nombre descriptivo (ej: ayudante de panadero), grado de peligrosidad 
+(entre 0 y 10) y sueldo de referencia. 
 
 Las personas ocupan distintos puestos, para cada puesto que ocupa una persona se establece un honorario 
-por hora (que no es necesariamente el mismo para distintas personas que ocupan el mismo puesto) y una cantidad de 
-horas por semana que esa persona va a ocupar ese puesto. Una persona puede tener como máximo un puesto en calidad de 
-titular y tres en calidad de suplente. Recordar especificar cardinalidad de las relaciones, indicando los supuestos 
-adicionales que se consideraron al modelar la solución.
+por hora (que no es necesariamente el mismo para distintas personas que ocupan el mismo puesto) y una 
+cantidad de horas por semana que esa persona va a ocupar ese puesto. Una persona puede tener como máximo 
+un puesto en calidad de titular y tres en calidad de suplente. Recordar especificar cardinalidad de las 
+relaciones, indicando los supuestos adicionales que se consideraron al modelar la solución.
 
 2 - Institución de ARTE
 
-Una institución de arte desea mantener información acerca de cuadros. Para ello, se quiere modelar pintores, cuadros y museos.
+Una institución de arte desea mantener información acerca de cuadros. Para ello, se quiere modelar pintores, 
+cuadros y museos.
 
 Se sabe que un pintor pinta cuadros y los cuadros se exponen en varios museos.
 
-Los pintores poseen un nombre (los nombres de los pintores no se repiten), las corrientes artísticas a las que pertenecieron (puede ser una o varias), su ciudad natal y su fecha de fallecimiento.
+Los pintores poseen un nombre (los nombres de los pintores no se repiten), las corrientes artísticas a las
+ que pertenecieron (puede ser una o varias), su ciudad natal y su fecha de fallecimiento.
 
-En cuanto a los cuadros, podemos saber quién o quiénes fueron los que lo pintaron, y el título que posee la obra.
+En cuanto a los cuadros, podemos saber quién o quiénes fueron los que lo pintaron, y el título que posee 
+la obra.
 
-Por último, los museos poseen un nombre (el nombre del museo no se repite), una dirección y la ciudad donde se encuentra.
+Por último, los museos poseen un nombre (el nombre del museo no se repite), una dirección y la ciudad donde 
+se encuentra.
 
 Tenga en cuenta que un cuadro podría ser pintado por varios pintores. Se sabe además que un cuadro puede
 
@@ -32,11 +36,16 @@ Un lavadero de Perros solicita un modelo de datos para un sistema de gestión de
 
 Los perros pertenecen a clientes de los cuales conocemos su dni, nombre y apellido, teléfono y domicilio.
 
-Los perros tienen un nombre, una descripción y un año de nacimiento, dos perros distintos de distinto cliente se pueden llamar igual, los nombres de los perros son únicos para un cliente, por ejemplo, Juan y Pedro pueden tener cada uno un perro llamado Toby, pero Juan no puede tener dos perros llamados Toby.
+Los perros tienen un nombre, una descripción y un año de nacimiento, dos perros distintos de distinto cliente 
+se pueden llamar igual, los nombres de los perros son únicos para un cliente, por ejemplo, Juan y Pedro pueden 
+tener cada uno un perro llamado Toby, pero Juan no puede tener dos perros llamados Toby.
 
-Queremos registrar los lavados de los perros, los datos involucrados son, fecha, hora, el código de batea (este es único), la lista de productos involucrados en el lavado, para estos últimos sólo nos interesa sus nombres, y el Empleado que realizó el lavado.
+Queremos registrar los lavados de los perros, los datos involucrados son, fecha, hora, el código de batea 
+(este es único), la lista de productos involucrados en el lavado, para estos últimos sólo nos interesa sus 
+nombres, y el Empleado que realizó el lavado.
 
-De los Empleados anotamos su DNI, nombre, email y fecha de nacimiento. Cada tanto un empleado tiene que cubrir a otro, hay 	que registrar para quién cubre a quién, la fecha y el motivo.
+De los Empleados anotamos su DNI, nombre, email y fecha de nacimiento. Cada tanto un empleado tiene que 
+cubrir a otro, hay 	que registrar para quién cubre a quién, la fecha y el motivo.
 
 4 - Bolsa de Empleo
 
@@ -44,23 +53,41 @@ Se desea modelar parte de la realidad de la bolsa de trabajo de una empresa.
 
 Se reciben ofertas de empleo y cada vez que esto ocurre se abre un llamado a potenciales perfiles. 
 
-A cada llamado se le asigna un número, una descripción, la fecha de aparición y la fecha límite de presentación al mismo.
+A cada llamado se le asigna un número, una descripción, la fecha de aparición y la fecha límite de presentación
+ al mismo.
 
-Los llamados pueden ser para otra empresa o para un área dentro de la empresa. Si el llamado es para otra empresa se sabe el nombre de la misma y si desea figurar o no en el aviso que saldrá publicado. Cuando la oferta de empleo proviene de una área de la empresa, se conoce el nombre de quién realizó la solicitud.
+Los llamados pueden ser para otra empresa o para un área dentro de la empresa. Si el llamado es para otra 
+empresa se sabe el nombre de la misma y si desea figurar o no en el aviso que saldrá publicado. Cuando la 
+oferta de empleo proviene de una área de la empresa, se conoce el nombre de quién realizó la solicitud.
 
-Para anotarse a un llamado, cada postulante debe completar el registro en la bolsa online. De cada postulante se conoce su CUIT, nombre, fecha de nacimiento, dirección, email, CV y teléfonos, profesión.
+Para anotarse a un llamado, cada postulante debe completar el registro en la bolsa online. De cada postulante 
+se conoce su CUIT, nombre, fecha de nacimiento, dirección, email, CV y teléfonos, profesión.
 
 De cada postulante que se haya inscripto al llamado se registra la fecha de inscripción al mismo.
 
-Los CV presentados se envían a la empresa o área que ofrece el empleo, para que esta realice la selección. En caso que la empresa decida no contratar a nadie el llamado se declara como desierto y se registra el motivo de tal situación para tenerlo en cuenta en futuros llamados. También puede suceder que no haya postulantes que se inscriban para un llamado, en cuyo caso el llamado también será declarado como desierto. De lo contrario se registran los perfiles contratados en el mismo. 
+Los CV presentados se envían a la empresa o área que ofrece el empleo, para que esta realice la selección.
+ En caso que la empresa decida no contratar a nadie el llamado se declara como desierto y se registra el 
+ motivo de tal situación para tenerlo en cuenta en futuros llamados. También puede suceder que no haya 
+ postulantes que se inscriban para un llamado, en cuyo caso el llamado también será declarado como desierto. 
+ De lo contrario se registran los perfiles contratados en el mismo. 
 
 5 - Geografía
 
 Se desea realizar una base de datos geográfica.
 
-Los paises pueden clasificarse en países independientes y colonias. Las colonias pertenecen a algún país independiente. Estos últimos tienen alguna forma de gobierno que puede ser república, principado, emirato, democracia popular, dictadura, etc. Los países independientes comercian entre sí distintos productos. Las colonias sólo comercian con el país colonizador. En ambos casos, del producto comerciado se conoce un código que lo identifica, así como el nombre del producto. Las relaciones de comercio posibles son de importación y exportación de productos.También forma parte de la BD la información de límites entre países (qué países limitan con un país dado). 
+Los paises pueden clasificarse en países independientes y colonias. Las colonias pertenecen a algún país 
+independiente. Estos últimos tienen alguna forma de gobierno que puede ser república, principado, emirato, 
+democracia popular, dictadura, etc. Los países independientes comercian entre sí distintos productos. Las 
+colonias sólo comercian con el país colonizador. En ambos casos, del producto comerciado se conoce un código 
+que lo identifica, así como el nombre del producto. Las relaciones de comercio posibles son de importación y 
+exportación de productos.También forma parte de la BD la información de límites entre países (qué países 
+limitan con un país dado). 
 
-Interesa modelar información relativa a los rios, los cuales pueden ser internacionales o nacionales. Los rios internacionales sirven de límite entre dos países mientras que los nacionales están totalmente contenidos en un sólo país. Los datos que interesan de cada río son su nombre, caudal y longitud. Se supone que pueden existir dos ríos nacionales con igual nombre en distinto país. Los ríos internacionales tienen nombre único.
+Interesa modelar información relativa a los rios, los cuales pueden ser internacionales o nacionales.
+ Los rios internacionales sirven de límite entre dos países mientras que los nacionales están totalmente 
+ contenidos en un sólo país. Los datos que interesan de cada río son su nombre, caudal y longitud. Se supone 
+ que pueden existir dos ríos nacionales con igual nombre en distinto país. Los ríos internacionales tienen 
+ nombre único.
 
 
 
