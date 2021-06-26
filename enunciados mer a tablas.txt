@@ -4,7 +4,8 @@ Tienes un amigo(a) que tiene juegos en DVD. Te pide que le hagas un pequeño pro
 
 
 Caso 2 – Estacionamiento Medido
-Se ha implementado en Resistencia la informatización del control de estacionamiento en el micro centro de la ciudad (EMI)
+Se ha implementado en Resistencia la informatización del control de estacionamiento en el micro centro de la 
+ciudad (EMI)
 
 Básicamente funciona de la siguiente manera: 
 
@@ -21,9 +22,12 @@ o Carga virtual.
 o Pagando el importe al responsable municipal ubicado en el lugar. 
 
 Tener en cuenta que el crédito corresponde a una patente determinada.
-o El sistema registra el horario de llegada del vehículo a determinada calle y altura. Así como también el horario de salida.
+o El sistema registra el horario de llegada del vehículo a determinada calle y altura. Así como también el
+ horario de salida.
 
-o Si el inspector de la ciudad verifica que determinada patente estacionada no se encuentra registrada en el sistema EMI, genera la multa correspondiente. Siempre y cuando la patente se encuentre inscripto en el Registro del Automotor local.
+o Si el inspector de la ciudad verifica que determinada patente estacionada no se encuentra registrada en el 
+sistema EMI, genera la multa correspondiente. Siempre y cuando la patente se encuentre inscripto en el 
+Registro del Automotor local.
 
  La ciudad se encuentra dividida en “zonas EMI” y a cada zona le corresponde un responsable municipal.
 
