@@ -25,10 +25,10 @@ def opcion_mas_larga(lista):
 def muestro_mensaje(texto, mensaje_continua=False):
     if not mensaje_continua:
         print("\t"+"*"*len(texto))
-        print("\t"+texto)
+        print("\t",texto)
         print("\t"+"*"*len(texto))
     else:
         print("\t"+"*"*len(texto))
-        print("\t"+texto)
+        print("\t",texto)
         print("\t"+"*"*len(texto))
         input("\tPresione cualquier tecla para continuar....")  
