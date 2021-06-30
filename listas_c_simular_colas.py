@@ -21,6 +21,7 @@ while sigo:
     else:    
         llego = randint(0,1)
         if llego:
+            limpiar_pantalla()
             muestro_mensaje("Llego alguien!!!!")
             
             if len(cola1)==len(cola2):
@@ -40,25 +41,26 @@ while sigo:
         if cola1 or cola2:
             salio = randint(0,1)
 
-        if salio:
-            muestro_mensaje("Salio alguien!!!!")
-            
-            if  cola1 and cola2:
-                cola_sale = str(randint(1,2))
-                if cola_sale == "1":
-                    cola1.pop()
-                    
-                else:
-                    cola2.pop()
-                    
-            elif cola1:
-                    cola1.pop()
-            elif cola2:
-                    cola2.pop()
+            if salio:
+                
+                muestro_mensaje("Salio alguien!!!!")
+                
+                if  cola1 and cola2:
+                    cola_sale = str(randint(1,2))
+                    if cola_sale == "1":
+                        cola1.pop()
+                        
+                    else:
+                        cola2.pop()
+                        
+                elif cola1:
+                        cola1.pop()
+                elif cola2:
+                        cola2.pop()
 
-            muestro_mensaje(f"La cola 1 esta asi: {cola1}")
-            muestro_mensaje(f"La cola 2 esta asi: {cola2}")
-        
+                muestro_mensaje(f"La cola 1 esta asi: {cola1}")
+                muestro_mensaje(f"La cola 2 esta asi: {cola2}")
+            
 
 limpiar_pantalla()
 muestro_mensaje(f"La cola 1 termino con {len(cola1)} personas")

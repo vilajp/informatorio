@@ -3,6 +3,19 @@ import os
 def limpiar_pantalla():
     os.system("cls")
 
+def es_entero(string):
+    string = string.strip()
+    orden = 0
+    for cada_letra in string:
+        if orden == 0 and cada_letra in "-+":
+            orden += 1
+            continue
+        elif cada_letra in "01234567890":
+            continue
+        else:
+            return False
+    return True
+
 def hacer_menu(*opciones):
     opcion = len(opciones)+2
     largo = opcion_mas_larga(opciones)
