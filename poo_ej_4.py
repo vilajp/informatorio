@@ -78,7 +78,7 @@ if __name__ == "__main__":
 
     while True:
         os.system("cls")
-        print("\n\t1 - Añadir Contacto \n\t2 - Lista de Contactos \n\t3 - Buscar Contacto \n\t4 - Editar Contacto \n\t5 - Cerrar Agenda")
+        print("\n\t1 - Añadir Contacto \n\t2 - Lista de Contactos \n\t3 - Buscar Contacto \n\t4 - Editar Contacto ")
         opcion = input("\tSeleccione una opcion(Enter para salir):")
         if opcion == "":
             break
