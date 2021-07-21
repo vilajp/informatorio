@@ -47,7 +47,10 @@ class Pizzeria:
 
 class Factura:
     def __init__(self, pedido_facturar):
-        self.cliente, self.descripcion, self.fecha, self.hora = pedido_facturar.muestro_pedido()
+        self.cliente = pedido_facturar.muestro_pedido()
+        self.descripcion = pedido_facturar.muestro_pedido()
+        self.fecha = pedido_facturar.muestro_pedido()
+        self.hora = pedido_facturar.muestro_pedido()
 
     def genero_factura(self):
         total_factura = 0
