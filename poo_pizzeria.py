@@ -50,7 +50,20 @@ class Factura:
         self.cliente, self.descripcion, self.fecha, self.hora = pedido_facturar.muestro_pedido()
 
     def genero_factura(self):
-        
+        total_factura = 0
+        print("\t**************************************************")
+        print(f"\tCliente: {self.cliente}  Resistencia,{self.fecha}")
+        print("\t**************************************************")
+        print("\t Variedad * Tamaño Pizza * Cantidad *Total Parcial")
+        for cada_item in self.descripcion():
+            variedad, porciones, precio, cantidad = cada_item
+            total_parcial = precio * int(cantidad)
+            print(f"\t {variedad} {porciones} porciones {cantidad} {total_parcial}")
+            total_factura += total_parcial
+        print(f"\t Total a pagar: \t{total_factura}")
+        return [self.cliente, self.descripcion, total_factura]
+
+
 
 class Menu:
     def __init__(self):
@@ -130,6 +143,9 @@ class Pedido:
 if __name__=="__main__":
     
     pizzeria = Pizzeria()
+    # pizzeria.tomo_pedido(['andrea', [['piedra', '10', 600, '1'], ['molde', '10', 600, '1']], '21-07-2021', datetime.time(16, 27, 52, 637307), '16:47:52'])
+    # pizzeria.tomo_pedido(['juan pablo', [['piedra', '12', 700, '1'], ['parrilla', '8', 500, '1'], ['molde', '12', 700, '1']], '21-07-2021', datetime.time(16, 30, 21, 134882), '17:20:21'])       
+
     while True:
         os.system("cls")
         print("\t*********************************")
@@ -168,13 +184,18 @@ if __name__=="__main__":
                 items = 1
                 for cada_pedido in pizzeria.getPedidos():
                         print(f"\t{items} - Cliente: {cada_pedido.muestro_pedido()[0]}")
+                        items +=1
                         for descripcion in cada_pedido.muestro_pedido()[1]:
                             print(f"\t\t--{descripcion[0]}--{descripcion[1]} porciones {descripcion[3]} ${descripcion[2]} ${int(descripcion[3])*descripcion[2]}")
-                            items +=1
+                            
                 respuesta = input("\tSeleccione nro de pedido a facturar:\t")
-                if respuesta in [str(x) for x in range(len(pizzeria.getPedidos()+1)]:
-                    nueva_factura = Factura(pizzeria.getPedidos[int(respuesta)-1])
+                if respuesta in [str(x) for x in range(len(pizzeria.getPedidos())+1)]:
+                    pedido_a_facturar = pizzeria.getPedidos()[int(respuesta)-1]
+                    nueva_factura = Factura(pedido_a_facturar)
+                    factura = nueva_factura.genero_factura()
+                    input()
+                    pizzeria.cargofactura(factura)
 
                 break
 
-                    
+             
