@@ -27,59 +27,88 @@ class Pizzeria:
         self.pedidos = list()
         self.facturas = list()
 
-        def tomo_pedido(self, un_pedido):
-            self.pedidos.append(un_pedido)
+    def tomo_pedido(self, un_pedido):
+        self.pedidos.append(un_pedido)
 
-        def getPedidos(self):
-            return self.pedidos
+    def getPedidos(self):
+        return self.pedidos
 
-        def cargofactura(self, una_factura):
-            self.facturas.append(una_factura)
+    def cargofactura(self, una_factura):
+        self.facturas.append(una_factura)
 
-        def pizzas_mas_pedidas(self):
-            pass
+    def pizzas_mas_pedidas(self):
+        pass
 
-        def ingresos_por_tiempo(self):
-            pass
+    def ingresos_por_tiempo(self):
+        pass
 
-        def pedidos_por_tiempo(self):
-            pass          
+    def pedidos_por_tiempo(self):
+        pass          
 
 class Factura:
     def __init__(self, cliente, descripcion):
         self.cliente = cliente
         self.descripcion = descripcion
 
-class Pizza:
-    def __init__(self, tamaño, tipo, cantidad):     
-        self.tamaño = tamaño
-        self.tipo = tipo
-        self.cantidad = cantidad
-        self.precios = {"piedra":{"8":500, "10":600, "12":700},
+class Menu:
+    def __init__(self):
+        self.pizza = {"piedra":{"8":500, "10":600, "12":700},
         "parrilla":{"8":500, "10":600, "12":700},
         "molde":{"8":500, "10":600, "12":700}}
 
-    def getTamaño(self):
-        return self.tamaño
-    
-    def gettipo(self):
-        return self.tipo
-    
-    def getCantidad(self):
-        return self.cantidad
+    def seleccion_pizza(self):
+        lista_pizzas = list(self.pizza.keys())
+        
+        while True:
+            items = 1
+            print("\tSeleccione su pizza")
+            for cada_pizza in self.pizza.keys():
+                print(f"\t{items} - {cada_pizza}")
+                items +=1
+            respuesta = input("\tSeleccione su pizza:\t")
+            if respuesta in [str(n) for n in range(1, len(lista_pizzas)+1)]:
+                variedad = lista_pizzas[int(respuesta)-1]
+                break
+            else:
+                print("\tRespuesta incorrecta! intente nuevamente")
+                input()
+        lista_porciones = list(self.pizza[variedad].keys())
+        
+        while True:
+            items = 1
+            print("\tSeleccione cantidad de porciones!")
+            for cada_porcion in self.pizza[variedad].keys():
+                print(f"\t{items} - {cada_porcion} porciones")
+                items +=1
+            respuesta = input("\tSeleccione su opcion:\t")
+            if respuesta in [str(n) for n in range(1,len(lista_porciones)+1)]:
+                porcion = lista_porciones[int(respuesta)-1]
+                break
+            else:
+                print("\tRespuesta incorrecta! intente nuevamente")
+                input()
+        precio = self.pizza[variedad][porcion]
+        return [variedad, porcion, precio]
+
+
+
 
 class Pedido:
-        pedido = 0
-    def __init__(self, nombre_cliente, demora_estimada):
-        self.numero_pedido = pedido + 1
+    
+    def __init__(self, nombre_cliente):
+        
         self.nombre_cliente = nombre_cliente
         self.pizzas = list()
         self.now = datetime.now()
         self.fecha = "-".join(reversed(str(self.now.date()).split("-")))
-        self.hora_entrega = self.calculo_demora(demora_estimada)
+        self.hora_entrega = ""
 
     def cargo_pizza(self, pizza_pedida):
         self.pizzas.append(pizza_pedida)
+        
+    def cargo_demora(self, demora_estimada):
+        self.hora_entrega = self.calculo_demora(demora_estimada)
+
 
     def calculo_demora(self, demora):
         self.hora_actual = str(self.now.time()).split(".")[0]
@@ -93,25 +122,45 @@ class Pedido:
         return f"{hora}:{minutos}:{segundos}"
 
     def muestro_pedido(self):
-        return [self.nombre_cliente, self.fecha, self.now.time(), self.hora_entrega]
+        return [self.nombre_cliente, self.pizzas, self.fecha, self.now.time(), self.hora_entrega]
 
 
 if __name__=="__main__":
-    os.system("cls")
-    nuevo_pedido = Pedido("juan Pablo", "30")
-    otro_pedido = Pedido("Andrea", "25")
+    
+    pizzeria = Pizzeria()
     while True:
+        os.system("cls")
+        print("\t*********************************")
         print("\tBienvenido a Pizzeria Rica Pizza!")
         print("\t*********************************")
-        print("\tSeleccione una opcion: \n1 - Nuevo Pedido \n2 - Genero Factura \n3 - Listo Pizzas mas pedidas \n4 - Recaudacion por hora \n5 - Pedidos por hora \n Enter para Salir")
-        respuesta = input("\t")
+        print("\n\t1 - Nuevo Pedido \n\t2 - Genero Factura \n\t3 - Listo Pizzas mas pedidas \n\t4 - Recaudacion por hora \n\t5 - Pedidos por hora ")
+        respuesta = input("\n\tSeleccione una opcion (Enter para Salir):")
         if respuesta == "":
             break
         
         elif respuesta == "1":
-            os.system("cls")
-            cliente = input("\tIngrese Nombre del Cliente:")
-        
-        for datos in nuevo_pedido.muestro_pedido():
-            print(datos)
+            while True:
+                os.system("cls")
+                cliente = input("\tIngrese Nombre del Cliente:\t")
+                nuevo_pedido = Pedido(cliente)
+                while True:
+                    nuevo_menu = Menu()
+                    pizza_seleccionada = nuevo_menu.seleccion_pizza()
+                    cantidad_deseada = input("\tIngrese cantidad de pizza que quiere:\t")                 
+                    respuesta = input("\n\tSigue seleccionando otras pizzas? s/n:\t")
+                    nuevo_pedido.cargo_pizza(pizza_seleccionada)
+                    if respuesta.lower() == "n":
+                        demora = input("\tIngrese demora estimada:\t")
+                        nuevo_pedido.cargo_demora(demora)
+                        print(nuevo_pedido.muestro_pedido())
+                        break
+                    
+                pizzeria.tomo_pedido(nuevo_pedido)
+                respuesta = input("\tCarga otro pedido? s/n:\t")
+                if respuesta.lower()== "n":
+                    for cada_pedido in pizzeria.getPedidos():
+                        print(cada_pedido.muestro_pedido())
+                    input()
+                    break
 
+                    
