@@ -46,9 +46,11 @@ class Pizzeria:
         pass          
 
 class Factura:
-    def __init__(self, cliente, descripcion):
-        self.cliente = cliente
-        self.descripcion = descripcion
+    def __init__(self, pedido_facturar):
+        self.cliente, self.descripcion, self.fecha, self.hora = pedido_facturar.muestro_pedido()
+
+    def genero_factura(self):
+        
 
 class Menu:
     def __init__(self):
@@ -148,6 +150,7 @@ if __name__=="__main__":
                     pizza_seleccionada = nuevo_menu.seleccion_pizza()
                     cantidad_deseada = input("\tIngrese cantidad de pizza que quiere:\t")                 
                     respuesta = input("\n\tSigue seleccionando otras pizzas? s/n:\t")
+                    pizza_seleccionada.append(cantidad_deseada)
                     nuevo_pedido.cargo_pizza(pizza_seleccionada)
                     if respuesta.lower() == "n":
                         demora = input("\tIngrese demora estimada:\t")
@@ -158,9 +161,20 @@ if __name__=="__main__":
                 pizzeria.tomo_pedido(nuevo_pedido)
                 respuesta = input("\tCarga otro pedido? s/n:\t")
                 if respuesta.lower()== "n":
-                    for cada_pedido in pizzeria.getPedidos():
-                        print(cada_pedido.muestro_pedido())
-                    input()
                     break
+        elif respuesta == "2":
+            while True:
+                print("\tEstos son los pedidos que Ud. tiene cargados:")
+                items = 1
+                for cada_pedido in pizzeria.getPedidos():
+                        print(f"\t{items} - Cliente: {cada_pedido.muestro_pedido()[0]}")
+                        for descripcion in cada_pedido.muestro_pedido()[1]:
+                            print(f"\t\t--{descripcion[0]}--{descripcion[1]} porciones {descripcion[3]} ${descripcion[2]} ${int(descripcion[3])*descripcion[2]}")
+                            items +=1
+                respuesta = input("\tSeleccione nro de pedido a facturar:\t")
+                if respuesta in [str(x) for x in range(len(pizzeria.getPedidos()+1)]:
+                    nueva_factura = Factura(pizzeria.getPedidos[int(respuesta)-1])
+
+                break
 
                     
