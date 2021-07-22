@@ -47,10 +47,10 @@ class Pizzeria:
 
 class Factura:
     def __init__(self, pedido_facturar):
-        self.cliente = pedido_facturar.muestro_pedido()
-        self.descripcion = pedido_facturar.muestro_pedido()
-        self.fecha = pedido_facturar.muestro_pedido()
-        self.hora = pedido_facturar.muestro_pedido()
+        self.cliente = pedido_facturar.muestro_pedido()[0]
+        self.descripcion = pedido_facturar.muestro_pedido()[1]
+        self.fecha = pedido_facturar.muestro_pedido()[2]
+        self.hora = pedido_facturar.muestro_pedido()[3]
 
     def genero_factura(self):
         total_factura = 0
@@ -58,7 +58,7 @@ class Factura:
         print(f"\tCliente: {self.cliente}  Resistencia,{self.fecha}")
         print("\t**************************************************")
         print("\t Variedad * Tamaño Pizza * Cantidad *Total Parcial")
-        for cada_item in self.descripcion():
+        for cada_item in self.descripcion:
             variedad, porciones, precio, cantidad = cada_item
             total_parcial = precio * int(cantidad)
             print(f"\t {variedad} {porciones} porciones {cantidad} {total_parcial}")
@@ -140,15 +140,12 @@ class Pedido:
         return f"{hora}:{minutos}:{segundos}"
 
     def muestro_pedido(self):
-        return [self.nombre_cliente, self.pizzas, self.fecha, self.now.time(), self.hora_entrega]
+        return [self.nombre_cliente, self.pizzas, self.fecha, self.hora_actual, self.hora_entrega]
 
 
 if __name__=="__main__":
     
     pizzeria = Pizzeria()
-    # pizzeria.tomo_pedido(['andrea', [['piedra', '10', 600, '1'], ['molde', '10', 600, '1']], '21-07-2021', datetime.time(16, 27, 52, 637307), '16:47:52'])
-    # pizzeria.tomo_pedido(['juan pablo', [['piedra', '12', 700, '1'], ['parrilla', '8', 500, '1'], ['molde', '12', 700, '1']], '21-07-2021', datetime.time(16, 30, 21, 134882), '17:20:21'])       
-
     while True:
         os.system("cls")
         print("\t*********************************")
@@ -174,7 +171,6 @@ if __name__=="__main__":
                     if respuesta.lower() == "n":
                         demora = input("\tIngrese demora estimada:\t")
                         nuevo_pedido.cargo_demora(demora)
-                        print(nuevo_pedido.muestro_pedido())
                         break
                     
                 pizzeria.tomo_pedido(nuevo_pedido)
@@ -183,6 +179,7 @@ if __name__=="__main__":
                     break
         elif respuesta == "2":
             while True:
+                os.system("cls")
                 print("\tEstos son los pedidos que Ud. tiene cargados:")
                 items = 1
                 for cada_pedido in pizzeria.getPedidos():
@@ -198,7 +195,25 @@ if __name__=="__main__":
                     factura = nueva_factura.genero_factura()
                     input()
                     pizzeria.cargofactura(factura)
-
                 break
+        elif respuesta == "3":
+            while True:
+                contador = dict()
+                os.system("cls")
+                print("\tListado de Pizzas mas solicitadas")
+                for cada_pedido in pizzeria.getPedidos():
+                    for cada_pizza in cada_pedido.muestro_pedido()[1]:
+                        if not cada_pizza[0]+"-"+cada_pizza[1] in contador.keys():
+                            contador[cada_pizza[0]+"-"+cada_pizza[1]]=  0
+                            contador[cada_pizza[0]+"-"+cada_pizza[1]] += int(cada_pizza[3])
+                        else:
+                            contador[cada_pizza[0]+"-"+cada_pizza[1]] += int(cada_pizza[3])
+                break
+            print(contador)
+            for pizza, cantidad in contador.items():
+                
+            input()
+
+
 
              
