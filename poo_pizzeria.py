@@ -26,21 +26,63 @@ class Pizzeria:
     def __init__(self):
         self.pedidos = list()
         self.facturas = list()
+        self.pedidos_historicos = list()
 
     def tomo_pedido(self, un_pedido):
         self.pedidos.append(un_pedido)
+        self.pedidos_historicos.append(un_pedido)
 
     def getPedidos(self):
         return self.pedidos
 
+    def elimino_pedido(self, pedido):
+        self.pedidos.remove(pedido)
+        
+
     def cargofactura(self, una_factura):
         self.facturas.append(una_factura)
 
+
+    def getFacturas(self):
+        return self.facturas
+
+    def getPedidos_historicos(self):
+        return self.pedidos_historicos
+
     def pizzas_mas_pedidas(self):
-        pass
+        contador = dict()
+        os.system("cls")
+        
+        for cada_pedido in self.getPedidos_historicos():
+            for cada_pizza in cada_pedido.muestro_pedido()[1]:
+                if not cada_pizza[0]+"-"+cada_pizza[1] in contador.keys():
+                    contador[cada_pizza[0]+"-"+cada_pizza[1]]=  0
+                    contador[cada_pizza[0]+"-"+cada_pizza[1]] += int(cada_pizza[3])
+                else:
+                    contador[cada_pizza[0]+"-"+cada_pizza[1]] += int(cada_pizza[3])
+        
+        
+        
+        ranking = dict()
+        while len(contador):
+            pizza_mas_pedida, cantidad_mas_pedida = busco_mayor(contador)
+            
+            ranking[pizza_mas_pedida] = cantidad_mas_pedida
+            del contador[pizza_mas_pedida]
+        print("\t*********************************")    
+        print("\tListado de pizzas mas solicitadas")
+        print("\t*********************************")
+        print()
+        for pizza, cantidad in ranking.items():
+            print(f"\tPizza Variedad {pizza.split('-')[0]} de {pizza.split('-')[1]} porciones --> {cantidad}")
+
 
     def ingresos_por_tiempo(self):
-        pass
+        os.system("cls")
+        for cada_factura in self.getFacturas():
+            print(cada_factura[0], cada_factura[2], cada_factura[3])
+
+
 
     def pedidos_por_tiempo(self):
         pass          
@@ -50,21 +92,26 @@ class Factura:
         self.cliente = pedido_facturar.muestro_pedido()[0]
         self.descripcion = pedido_facturar.muestro_pedido()[1]
         self.fecha = pedido_facturar.muestro_pedido()[2]
-        self.hora = pedido_facturar.muestro_pedido()[3]
+        self.hora_pedido = pedido_facturar.muestro_pedido()[3]
+        self.total_factura = 0
+        self.now = datetime.now()
+        self.hora_actual = str(self.now.time()).split(".")[0]
 
     def genero_factura(self):
-        total_factura = 0
+        
         print("\t**************************************************")
         print(f"\tCliente: {self.cliente}  Resistencia,{self.fecha}")
         print("\t**************************************************")
-        print("\t Variedad * Tamaño Pizza * Cantidad *Total Parcial")
+        print("\tVariedad\tTamaño Pizza\tCantidad\tTotal Parcial")
         for cada_item in self.descripcion:
             variedad, porciones, precio, cantidad = cada_item
             total_parcial = precio * int(cantidad)
-            print(f"\t {variedad} {porciones} porciones {cantidad} {total_parcial}")
-            total_factura += total_parcial
-        print(f"\t Total a pagar: \t{total_factura}")
-        return [self.cliente, self.descripcion, total_factura]
+            print(f"\t{variedad}\t{porciones} porciones\t{cantidad}\t{total_parcial}")
+            self.total_factura += total_parcial
+        print(f"\t Total a pagar: \t{self.total_factura}")
+        return [self.cliente, self.descripcion, self.total_factura, self.hora_actual]
+    
+
 
 
 
@@ -143,10 +190,46 @@ class Pedido:
         return [self.nombre_cliente, self.pizzas, self.fecha, self.hora_actual, self.hora_entrega]
 
 
+def cargo_datos():
+    pedido1 = Pedido("Andrea Miron")
+    pedido2 = Pedido("Dulcinea Vila")
+    pedido3 = Pedido("Django Vila")
+    pizza_selecc_pedido1 =["piedra","10",600, "1"]
+    pizza2_selecc_pedido1 = ["parrilla","12",700, "2"]
+    pizza_selecc_pedido2 =["molde","10",600, "1"]
+    pizza2_selecc_pedido2=["molde","10",600, "2"]
+    pizza_selecc_pedido3 =["piedra","12",700, "1"]
+    pizza2_selecc_pedido3 =["parrilla","10",600, "2"]
+    pedido1.cargo_pizza(pizza_selecc_pedido1)
+    pedido1.cargo_pizza(pizza2_selecc_pedido1)
+    pedido2.cargo_pizza(pizza_selecc_pedido2)
+    pedido2.cargo_pizza(pizza2_selecc_pedido2)
+    pedido3.cargo_pizza(pizza_selecc_pedido3)
+    pedido3.cargo_pizza(pizza2_selecc_pedido3)
+    pedido1.cargo_demora("40")
+    pedido2.cargo_demora("50")
+    pedido3.cargo_demora("30")
+    pizzeria.tomo_pedido(pedido1)
+    pizzeria.tomo_pedido(pedido2)
+    pizzeria.tomo_pedido(pedido3)
+    
+def busco_mayor(diccionario):
+    clave_mayor = ""
+    valor_mayor = 0
+    for clave, valor in diccionario.items():
+                
+        if valor > valor_mayor:
+            clave_mayor = clave
+            valor_mayor = valor
+    return [clave_mayor, valor_mayor]
+
+
 if __name__=="__main__":
     
     pizzeria = Pizzeria()
+    cargo_datos()
     while True:
+        
         os.system("cls")
         print("\t*********************************")
         print("\tBienvenido a Pizzeria Rica Pizza!")
@@ -162,15 +245,18 @@ if __name__=="__main__":
                 cliente = input("\tIngrese Nombre del Cliente:\t")
                 nuevo_pedido = Pedido(cliente)
                 while True:
-                    nuevo_menu = Menu()
+                    nuevo_menu = Menu()                   
                     pizza_seleccionada = nuevo_menu.seleccion_pizza()
                     cantidad_deseada = input("\tIngrese cantidad de pizza que quiere:\t")                 
                     respuesta = input("\n\tSigue seleccionando otras pizzas? s/n:\t")
                     pizza_seleccionada.append(cantidad_deseada)
+                    
                     nuevo_pedido.cargo_pizza(pizza_seleccionada)
+                    
                     if respuesta.lower() == "n":
                         demora = input("\tIngrese demora estimada:\t")
                         nuevo_pedido.cargo_demora(demora)
+                        
                         break
                     
                 pizzeria.tomo_pedido(nuevo_pedido)
@@ -195,23 +281,14 @@ if __name__=="__main__":
                     factura = nueva_factura.genero_factura()
                     input()
                     pizzeria.cargofactura(factura)
+                    pizzeria.elimino_pedido(pedido_a_facturar)
                 break
         elif respuesta == "3":
-            while True:
-                contador = dict()
-                os.system("cls")
-                print("\tListado de Pizzas mas solicitadas")
-                for cada_pedido in pizzeria.getPedidos():
-                    for cada_pizza in cada_pedido.muestro_pedido()[1]:
-                        if not cada_pizza[0]+"-"+cada_pizza[1] in contador.keys():
-                            contador[cada_pizza[0]+"-"+cada_pizza[1]]=  0
-                            contador[cada_pizza[0]+"-"+cada_pizza[1]] += int(cada_pizza[3])
-                        else:
-                            contador[cada_pizza[0]+"-"+cada_pizza[1]] += int(cada_pizza[3])
-                break
-            print(contador)
-            for pizza, cantidad in contador.items():
-                
+            pizzeria.pizzas_mas_pedidas()
+            input()
+
+        elif respuesta == "4":
+            pizzeria.ingresos_por_tiempo()
             input()
 
 
