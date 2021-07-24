@@ -79,13 +79,29 @@ class Pizzeria:
 
     def ingresos_por_tiempo(self):
         os.system("cls")
+        fecha_inicio = input("\tIngrese fecha inicio de busqueda(dd-mm-aaaa):\t")
+        fecha_fin = input("\tIngrese fecha final de busqueda(dd-mm-aaaa):\t")
+        hora_inicio = input("\tIngrese hora de inicio Actividad(hh:mm):\t")
+        hora_fin = input("\tIngrese hora fin de Actividad(hh:mm):\t")
+        intervalo = input("\tIngrese el intervalo de tiempo a evaluar en minutos:\t")
+
+        # [self.fecha, self.cliente, self.descripcion, self.total_factura, self.hora_actual]
+    
         for cada_factura in self.getFacturas():
-            print(cada_factura[0], cada_factura[2], cada_factura[3])
+            
+            if doy_vuelta(fecha_inicio) <= doy_vuelta(cada_factura[0]) <= doy_vuelta(fecha_fin):
+                print("\t"+cada_factura[0], cada_factura[4], cada_factura[1], cada_factura[3])
 
 
 
     def pedidos_por_tiempo(self):
         pass          
+
+def doy_vuelta(fecha, separador = ""):
+    if not separador:
+        return int(separador.join(reversed(fecha.split("-"))))
+    else:
+        return separador.join(reversed(fecha.split("-")))
 
 class Factura:
     def __init__(self, pedido_facturar):
@@ -109,7 +125,7 @@ class Factura:
             print(f"\t{variedad}\t{porciones} porciones\t{cantidad}\t{total_parcial}")
             self.total_factura += total_parcial
         print(f"\t Total a pagar: \t{self.total_factura}")
-        return [self.cliente, self.descripcion, self.total_factura, self.hora_actual]
+        return [self.fecha, self.cliente, self.descripcion, self.total_factura, self.hora_actual]
     
 
 
@@ -165,7 +181,7 @@ class Pedido:
         self.nombre_cliente = nombre_cliente
         self.pizzas = list()
         self.now = datetime.now()
-        self.fecha = "-".join(reversed(str(self.now.date()).split("-")))
+        self.fecha = doy_vuelta(str(self.now.date()),"-")
         self.hora_entrega = ""
 
     def cargo_pizza(self, pizza_pedida):
@@ -212,7 +228,63 @@ def cargo_datos():
     pizzeria.tomo_pedido(pedido1)
     pizzeria.tomo_pedido(pedido2)
     pizzeria.tomo_pedido(pedido3)
-    
+
+def cargo_facturas():
+    # [self.fecha, self.cliente, self.descripcion, self.total_factura, self.hora_actual]
+    pizzeria.cargofactura(["22-03-2021", 
+                            "Andrea Miron", 
+                            [["piedra","12",700, "1"],["parrilla","10",600,"1"]],
+                            1300,
+                            "21:43:00"])
+    pizzeria.cargofactura(["22-03-2021", 
+                            "Django Vila", 
+                            [["piedra","12",700, "1"],["parrilla","10",600,"1"]],
+                            1300,
+                            "20:30:00"])   
+    pizzeria.cargofactura(["22-03-2021", 
+                            "Dulcinea Vila", 
+                            [["piedra","12",700, "1"],["parrilla","10",600,"1"]],
+                            1300,
+                            "19:15:00"]) 
+    pizzeria.cargofactura(["22-03-2021", 
+                            "Juan Pablo Vila", 
+                            [["piedra","12",700, "1"],["parrilla","10",600,"1"]],
+                            1300,
+                            "18:50:00"])  
+    pizzeria.cargofactura(["23-03-2021", 
+                            "Carlos Vila", 
+                            [["piedra","12",700, "1"],["parrilla","10",600,"1"]],
+                            1300,
+                            "21:43:00"])   
+    pizzeria.cargofactura(["23-03-2021", 
+                            "Nicolas Tortosa", 
+                            [["piedra","12",700, "1"],["parrilla","10",600,"1"]],
+                            1300,
+                            "18:23:00"])   
+    pizzeria.cargofactura(["24-03-2021", 
+                            "Gonzalo Villamandos", 
+                            [["piedra","12",700, "1"],["parrilla","10",600,"1"]],
+                            1300,
+                            "23:05:00"])  
+    pizzeria.cargofactura(["24-03-2021", 
+                            "Andrea Morinigo", 
+                            [["piedra","12",700, "1"],["parrilla","10",600,"1"]],
+                            1300,
+                            "21:43:00"])  
+    pizzeria.cargofactura(["24-03-2021", 
+                            "Hugo Schneider", 
+                            [["piedra","12",700, "1"],["parrilla","10",600,"1"]],
+                            1300,
+                            "22:05:00"])   
+ 
+ 
+
+
+ 
+  
+
+   
+
 def busco_mayor(diccionario):
     clave_mayor = ""
     valor_mayor = 0
@@ -227,7 +299,10 @@ def busco_mayor(diccionario):
 if __name__=="__main__":
     
     pizzeria = Pizzeria()
-    cargo_datos()
+
+    cargo_datos() #Cargo pedidos para pruebas
+    cargo_facturas() #Cargo facturas para pruebas
+
     while True:
         
         os.system("cls")
