@@ -21,6 +21,7 @@ Implementar un programa en Python que resuelva este caso de estudio a través de
 '''
 import os
 from datetime import datetime
+import random
 
 class Pizzeria:
     def __init__(self):
@@ -89,7 +90,7 @@ class Pizzeria:
     
         for cada_factura in self.getFacturas():
             
-            if doy_vuelta(fecha_inicio) <= doy_vuelta(cada_factura[0]) <= doy_vuelta(fecha_fin):
+            if doy_vuelta_fecha(fecha_inicio) <= doy_vuelta_fecha(cada_factura[0]) <= doy_vuelta_fecha(fecha_fin):
                 print("\t"+cada_factura[0], cada_factura[4], cada_factura[1], cada_factura[3])
 
 
@@ -97,7 +98,7 @@ class Pizzeria:
     def pedidos_por_tiempo(self):
         pass          
 
-def doy_vuelta(fecha, separador = ""):
+def doy_vuelta_fecha(fecha, separador = ""):
     if not separador:
         return int(separador.join(reversed(fecha.split("-"))))
     else:
@@ -181,7 +182,7 @@ class Pedido:
         self.nombre_cliente = nombre_cliente
         self.pizzas = list()
         self.now = datetime.now()
-        self.fecha = doy_vuelta(str(self.now.date()),"-")
+        self.fecha = doy_vuelta_fecha(str(self.now.date()),"-")
         self.hora_entrega = ""
 
     def cargo_pizza(self, pizza_pedida):
@@ -231,6 +232,28 @@ def cargo_datos():
 
 def cargo_facturas():
     # [self.fecha, self.cliente, self.descripcion, self.total_factura, self.hora_actual]
+    nombres = ["Andrea","Django","Dulcinea","Juan Pablo","Carlos", "Nicolas", "Gonzalo", "Andrea", "Hugo"]
+    apellidos = ["Miron", "Vila", "Tortosa", "Villamandos", "Morinigo", "Schneider"]
+    horas = ["20:00:00", "03:00:00"] #genero horas aleatorias entre ese periodo
+    fechas = ["01-03-2021", "21-03-2021"]
+    pizzas = [["piedra","8",500, "1"],
+            ["parrilla","8",500,"1"],
+            ["molde","8",500, "1"],
+            ["piedra","10",600,"1"],
+             ["parrilla","10",600, "1"],
+             ["molde","10",600,"1"],
+             ["piedra","12",700, "1"],
+             ["parrilla","12",700,"1"]
+             ["molde","12",700,"1"]]
+
+    cantidad_facturas = 1500
+    hora_mas_cargada = "22:00"
+    incremento_diario = 0
+    while cantidad_facturas !=0:
+        cliente = f"{nombres[random.randint(0,8)]} {apellidos[random.randint(0,5)]}"
+        fecha = 
+
+    
     pizzeria.cargofactura(["22-03-2021", 
                             "Andrea Miron", 
                             [["piedra","12",700, "1"],["parrilla","10",600,"1"]],
