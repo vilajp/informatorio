@@ -1,0 +1,83 @@
+Teniendo en cuenta la BD creada, denominada "EmpresaPrueba", resolver las siguientes cuestiones:
+
+vLista el nombre de todos los productos que hay en la tabla producto.
+
+vLista todas las columnas de la tabla producto.
+
+vLista el nombre de los productos y el precio en USD.
+
+vLista los nombres y los precios de todos los productos de la tabla producto, convirtiendo los nombres a mayúscula.
+
+vLista los nombres y los precios de todos los productos de la tabla producto, redondeando el valor del precio.
+
+vLista el código de los fabricantes que tienen productos en la tabla producto.
+
+vLista el código de los fabricantes que tienen productos en la tabla producto, eliminando los códigos que aparecen repetidos.
+
+vLista los nombres de los fabricantes ordenados de forma ascendente.
+
+vLista los nombres de los productos ordenados en primer lugar por el nombre de forma ascendente y en segundo lugar por el precio de forma descendente.
+
+vDevuelve una lista con las 5 primeras filas de la tabla fabricante.
+
+vLista el nombre de todos los productos del fabricante cuyo código de fabricante es igual a 2.
+
+vLista el nombre de los productos que tienen un precio menor o igual a 120USD
+
+vDevuelve todos los productos del fabricante Lenovo. (Sin utilizar INNER JOIN).
+
+vDevuelve todos los datos de los productos que tienen el mismo precio que el producto más caro del fabricante Lenovo. (Sin utilizar INNER JOIN).
+
+vLista el nombre del producto más caro del fabricante Lenovo.
+
+vDevuelve los nombres de los fabricantes que tienen productos asociados. (Utilizando ALL o ANY)
+
+CASO: Universidad
+
+Ejecutá consultas SQL para dar respuesta a los siguientes items:
+
+vLista las asignaturas del tipo "optativa".
+
+vLista los nombres de Departamento de la Universidad.
+
+vListar apellidos y nombre de las Personas, convirtiendo ambos elementos a mayúsculas
+
+vListar  apellidos y nombres de Profesores mayores a 40 años en la Universidad.
+
+CASO: Northwind
+
+v1. Una lista de los nombres y apellidos dede la tabla de EMPLOYEES.
+
+v2. Una lista de todos los nombres de las ciudades que aparecen en la tabla de EMPLOYEES. No mostrar 2 veces un mismo nombre de ciudad.
+
+v3. Una lista de los nombres de productos y precios unitarios de la tabla PRODUCTS.
+
+v4. En la tabla EMPLOYEES: una lista de los detalles completos de quienes viven en EE.UU.
+
+V5. A partir de la tabla ORDERS, listar todos los pedidos que tienen un gasto de envio > 50.
+
+v6. De la tabla de CUSTOMERS: listar nombre de la empresa de clientes donde el cargo es igual a Owner.
+
+v7. A partir de la tabla CUSTOMERS una lista de clientes cuyo nombre comienza con la letra "A”.
+
+v8. Una lista de los nombres de clientes donde la región no está en blanco.
+
+v9. Una lista de todos los productos, ordenado por precio unitario (el más barato primero).
+
+v10. Una lista de todos los productos, ordenado por precio unitario (el más caro primero).
+
+v11. El número total de registros de la tabla EMPLOYEES. Nombre de la columna de salida "TotalEmpleados".
+
+v12. De la tabla de pedidos, el gasto de envío promedio y el máximo gasto de envío.
+
+
+CASO: RRHH
+
+vEn base a la tabla EMPLOYEES, listar datos de quienes tengan un sueldo mayor a 10000.
+
+vEn base a la tabla EMPLOYEES, contar cuántas personas, al aplicar un aumento de 5%, su sueldo supere los 15000.
+
+vListar los nombres de todos los departamentos.
+
+vListar la cantidad de personas de la tabla EMPLOYEES, que tengan el cargo de Programador. Y cuantas de estas personas superen el sueldo mínimo en esa categoría.
+

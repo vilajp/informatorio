@@ -230,6 +230,18 @@ def cargo_datos():
     pizzeria.tomo_pedido(pedido2)
     pizzeria.tomo_pedido(pedido3)
 
+def horas_a_segundos(hora_origen, incremento):
+    hora, minutos, segundos = hora_origen.split(":")
+    hora_en_segundos = int(hora)*3600 + int(minutos)*60 + int(segundos)
+    hora_demora_en_segundos = hora_en_segundos + int(incremento)*60
+    hora_demora = int(hora_demora_en_segundos /3600)
+    if hora_demora > 23:
+        hora_demora -= 24
+    minutos_demora = int((hora_demora_en_segundos%3600)/60)
+    segundos_demora = int((hora_demora_en_segundos%3600)%60)
+    hora, minutos, segundos = ["0"+ str(x) if len(str(x))<2 else str(x) for x in [hora_demora, minutos_demora, segundos_demora] ]
+    return f"{hora}:{minutos}:{segundos}"
+
 def cargo_facturas():
     # [self.fecha, self.cliente, self.descripcion, self.total_factura, self.hora_actual]
     nombres = ["Andrea","Django","Dulcinea","Juan Pablo","Carlos", "Nicolas", "Gonzalo", "Andrea", "Hugo"]
@@ -243,16 +255,29 @@ def cargo_facturas():
              ["parrilla","10",600, "1"],
              ["molde","10",600,"1"],
              ["piedra","12",700, "1"],
-             ["parrilla","12",700,"1"]
+             ["parrilla","12",700,"1"],
              ["molde","12",700,"1"]]
 
     cantidad_facturas = 1500
-    hora_mas_cargada = "22:00"
-    incremento_diario = 0
+    
     while cantidad_facturas !=0:
+        pizza = list()
         cliente = f"{nombres[random.randint(0,8)]} {apellidos[random.randint(0,5)]}"
-        fecha = 
-
+        fecha = str(int(fechas[0][0:2])+random.randint(0,20))+"-03-2021"
+        hora = horas_a_segundos(horas[0], str(random.randint(5,480)))
+        for i in range(random.randint(1,3))  :  
+            pizza.append(pizzas[random.randint(0,8)])
+        total = 0
+        for cada_pizza in pizza:
+            total += cada_pizza[2]
+        print(f"{fecha} {cliente} {pizza} {total} {hora}")
+        pizzeria.cargofactura([fecha,
+                                cliente,
+                                pizza,
+                                total,
+                                hora])
+        cantidad_facturas -= 1
+        
     
     pizzeria.cargofactura(["22-03-2021", 
                             "Andrea Miron", 
