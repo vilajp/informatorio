@@ -1,36 +1,37 @@
 Teniendo en cuenta la BD creada, denominada "EmpresaPrueba", resolver las siguientes cuestiones:
 
-vLista el nombre de todos los productos que hay en la tabla producto.
+v1Lista el nombre de todos los productos que hay en la tabla producto.
 
-vLista todas las columnas de la tabla producto.
+v2Lista todas las columnas de la tabla producto.
 
-vLista el nombre de los productos y el precio en USD.
+v3Lista el nombre de los productos y el precio en USD.
 
-vLista los nombres y los precios de todos los productos de la tabla producto, convirtiendo los nombres a mayúscula.
+v4Lista los nombres y los precios de todos los productos de la tabla producto, convirtiendo los nombres a mayúscula.
 
-vLista los nombres y los precios de todos los productos de la tabla producto, redondeando el valor del precio.
+v5Lista los nombres y los precios de todos los productos de la tabla producto, redondeando el valor del precio.
 
-vLista el código de los fabricantes que tienen productos en la tabla producto.
+v6Lista el código de los fabricantes que tienen productos en la tabla producto.
 
-vLista el código de los fabricantes que tienen productos en la tabla producto, eliminando los códigos que aparecen repetidos.
+v7Lista el código de los fabricantes que tienen productos en la tabla producto, eliminando los códigos que aparecen repetidos.
 
-vLista los nombres de los fabricantes ordenados de forma ascendente.
+v8Lista los nombres de los fabricantes ordenados de forma ascendente.
 
-vLista los nombres de los productos ordenados en primer lugar por el nombre de forma ascendente y en segundo lugar por el precio de forma descendente.
+v9Lista los nombres de los productos ordenados en primer lugar por el nombre de forma ascendente y en segundo lugar por el precio de forma descendente.
 
-vDevuelve una lista con las 5 primeras filas de la tabla fabricante.
+v10Devuelve una lista con las 5 primeras filas de la tabla fabricante.
 
-vLista el nombre de todos los productos del fabricante cuyo código de fabricante es igual a 2.
+v11Lista el nombre de todos los productos del fabricante cuyo código de fabricante es igual a 2.
 
-vLista el nombre de los productos que tienen un precio menor o igual a 120USD
+v12Lista el nombre de los productos que tienen un precio menor o igual a 120USD
 
-vDevuelve todos los productos del fabricante Lenovo. (Sin utilizar INNER JOIN).
+v13Devuelve todos los productos del fabricante Lenovo. (Sin utilizar INNER JOIN).
 
-vDevuelve todos los datos de los productos que tienen el mismo precio que el producto más caro del fabricante Lenovo. (Sin utilizar INNER JOIN).
+v14Devuelve todos los datos de los productos que tienen el mismo precio que el producto más caro del fabricante Lenovo. (Sin utilizar INNER JOIN).
 
-vLista el nombre del producto más caro del fabricante Lenovo.
+v15Lista el nombre del producto más caro del fabricante Lenovo.
 
-vDevuelve los nombres de los fabricantes que tienen productos asociados. (Utilizando ALL o ANY)
+v16Devuelve los nombres de los fabricantes que tienen productos asociados. (Utilizando ALL o ANY)
+6 - 11 - 13(a-b) -  
 
 CASO: Universidad
 

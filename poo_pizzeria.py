@@ -87,11 +87,20 @@ class Pizzeria:
         intervalo = input("\tIngrese el intervalo de tiempo a evaluar en minutos:\t")
 
         # [self.fecha, self.cliente, self.descripcion, self.total_factura, self.hora_actual]
-    
-        for cada_factura in self.getFacturas():
+        hora_intervalo = horas_a_segundos(hora_inicio, intervalo)
+        while horas_a_segundos(hora_intervalo) <= horas_a_segundos(hora_fin):
+            for cada_factura in self.getFacturas():
+                
+                if doy_vuelta_fecha(fecha_inicio) <= doy_vuelta_fecha(cada_factura[0]) <= doy_vuelta_fecha(fecha_fin):
+                    
+                    if horas_a_segundos(hora_inicio)<= horas_a_segundos(cada_factura[4])<=horas_a_segundos(hora_intervalo):
+                        print(f"\t*****{hora_inicio}*******{hora_intervalo}**********")
+                        print("\t"+cada_factura[0], cada_factura[4], cada_factura[1], cada_factura[3])
             
-            if doy_vuelta_fecha(fecha_inicio) <= doy_vuelta_fecha(cada_factura[0]) <= doy_vuelta_fecha(fecha_fin):
-                print("\t"+cada_factura[0], cada_factura[4], cada_factura[1], cada_factura[3])
+            hora_inicio = hora_intervalo
+            
+            hora_intervalo = horas_a_segundos(hora_inicio, intervalo)
+            print(f"\t*******************************************************************************")
 
 
 
@@ -195,8 +204,8 @@ class Pedido:
     def calculo_demora(self, demora):
         self.hora_actual = str(self.now.time()).split(".")[0]
         hora, minutos, segundos = self.hora_actual.split(":")
-        hora_en_segundos = int(hora)*3600 + int(minutos)*60 + int(segundos)
-        hora_demora_en_segundos = hora_en_segundos + int(demora)*60
+        horas_a_segundos = int(hora)*3600 + int(minutos)*60 + int(segundos)
+        hora_demora_en_segundos = horas_a_segundos + int(demora)*60
         hora_demora = int(hora_demora_en_segundos /3600)
         minutos_demora = int((hora_demora_en_segundos%3600)/60)
         segundos_demora = int((hora_demora_en_segundos%3600)%60)
@@ -230,10 +239,12 @@ def cargo_datos():
     pizzeria.tomo_pedido(pedido2)
     pizzeria.tomo_pedido(pedido3)
 
-def horas_a_segundos(hora_origen, incremento):
+def horas_a_segundos(hora_origen, incremento = "0"):
     hora, minutos, segundos = hora_origen.split(":")
-    hora_en_segundos = int(hora)*3600 + int(minutos)*60 + int(segundos)
-    hora_demora_en_segundos = hora_en_segundos + int(incremento)*60
+    horas_a_segundos = int(hora)*3600 + int(minutos)*60 + int(segundos)
+    if incremento == "0":
+        return horas_a_segundos
+    hora_demora_en_segundos = horas_a_segundos + int(incremento)*60
     hora_demora = int(hora_demora_en_segundos /3600)
     if hora_demora > 23:
         hora_demora -= 24
